@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POKEMONS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+
+    <script type="text/javascript" src="js/app/app.js"></script>
+    <script type="text/javascript" src="js/app/services/pokemon.service.js"></script>
+    <script type="text/javascript" src="js/app/controllers/pokemon.controller.js"></script>
+</head>
+<body ng-app="PokemonApp">
+<div class="container-main" ng-controller="PokemonController">
+    <header class="header-main col-xs-12">
+        POKEDEX
+    </header>
+
+    <div class="pokemons col-xs-12">
+        <section class="pokemon-list col-xs-8">
+            <div ng-repeat="pokemon in pokemons" class="pokemon col-lg-2 col-md-3 col-sm-4 col-xs-6"
+                 ng-show="pokemons.length" ng-click="selectPokemon(pokemon)">
+                <div class="pokemon__image">
+                    <img src="http://pokeapi.co/media/img/{{pokemon.national_id}}.png" alt="{{pokemon.national_id}}"/>
+                </div>
+                <div class="pokemon__name">
+                    <p>{{pokemon.name}}</p>
+                </div>
+                <div class="pokemon__types col-sm-12">
+                    <div class="pokemon__type col-sm-6" ng-repeat="type in pokemon.types">
+                        <span>{{type.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="load-more btn btn-lg btn-info" ng-click="hasMorePokemons && loadMorePokemons()"
+                     ng-disabled="!hasMorePokemons">
+                    LOAD MORE
+                </div>
+            </div>
+        </section>
+
+        <section class="pokemon-view col-xs-6 col-sm-4">
+            <div class="pokemon-view__details" ng-show="selectedPokemon.name">
+                <div class="pokemon-view__image">
+                    <img src="http://pokeapi.co/media/img/{{selectedPokemon.national_id}}.png"
+                         alt="{{selectedPokemon.national_id}}"/>
+                </div>
+                <div class="pokemon-view__name">
+                    <p>{{selectedPokemon.name}}</p>
+                </div>
+                <div class="pokemon-view__details">
+                    <table>
+                        <tr>
+                            <td>Type</td>
+                            <td>
+                                <span ng-repeat="type in selectedPokemon.types">{{type.name}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attack</td>
+                            <td>{{selectedPokemon.attack}}</td>
+                        </tr>
+                        <tr>
+                            <td>Defense</td>
+                            <td>{{selectedPokemon.defense}}</td>
+                        </tr>
+                        <tr>
+                            <td>HP</td>
+                            <td>{{selectedPokemon.hp}}</td>
+                        </tr>
+                        <tr>
+                            <td>SP Attack</td>
+                            <td>{{selectedPokemon.sp_atk}}</td>
+                        </tr>
+                        <tr>
+                            <td>SP Defense</td>
+                            <td>{{selectedPokemon.sp_def}}</td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>{{selectedPokemon.speed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>{{selectedPokemon.weight}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Moves</td>
+                            <td>{{selectedPokemon.moves.length}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>
