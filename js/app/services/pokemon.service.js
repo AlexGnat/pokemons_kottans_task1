@@ -5,7 +5,7 @@ angular.module("PokemonApp")
         var NEW_POKEMON_COUNT = 12;
 
         var pokemons = [];
-        var pokemonTypes = [];
+        var pokemonTypes = ["all types"];
         var TOTAL_POKEMONS_AVAILABLE = 0;
 
         this.getPokemonList = function () {

@@ -1,1 +1,1 @@
-angular.module('PokemonApp', []);
+angular.module('PokemonApp', ['ui.select', 'ngSanitize']);
